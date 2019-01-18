@@ -16,6 +16,9 @@
 (require 'pcase)
 
 (defun flycheck-ensime-start (checker cont)
+  "This function mapping ensime to flycheck.
+Argument CHECKER syntax checker being started.
+Argument CONT callback."
   (funcall cont 'finished
            (mapcar
             (lambda (note)
