@@ -1,4 +1,15 @@
-;; -*- lexical-binding: t -*-
+;;; flycheck-ensime.el --- ensime for flycheck -*- lexical-binding: t -*-
+
+;; Author: ncaq <ncaq@ncaq.net>
+;; Version: 0.1.0
+;; Package-Requires: ((emacs "26")(ensime "2.0.0")(flycheck "32-cvs"))
+;; URL: https://github.com/ncaq/flycheck-ensime
+
+;;; Commentary:
+
+;; display ensime error message for flycheck buffer.
+
+;;; Code:
 
 (require 'ensime)
 (require 'flycheck)
@@ -32,3 +43,5 @@
 (add-to-list 'flycheck-checkers 'ensime)
 
 (provide 'flycheck-ensime)
+
+;;; flycheck-ensime.el ends here
