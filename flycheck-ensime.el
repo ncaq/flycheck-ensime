@@ -63,11 +63,9 @@ Argument CONT callback."
     "A Scala (Java) checker using ENSIME."
     :start 'flycheck-ensime-start
     :modes '(scala-mode java-mode)
-    :predicate 'ensime-connection-or-nil))
-
-;;;###autoload
-(with-eval-after-load 'flycheck
-  (add-to-list 'flycheck-checkers 'ensime))
+    :predicate 'ensime-connection-or-nil)
+  (add-to-list 'flycheck-checkers 'ensime)
+  )
 
 (provide 'flycheck-ensime)
 
