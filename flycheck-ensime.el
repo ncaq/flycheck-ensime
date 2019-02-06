@@ -58,14 +58,16 @@ Argument CONT callback."
             (ensime-all-notes))))
 
 ;;;###autoload
-(flycheck-define-generic-checker 'ensime
-  "A Scala (Java) checker using ENSIME."
-  :start 'flycheck-ensime-start
-  :modes '(scala-mode java-mode)
-  :predicate 'ensime-connection-or-nil)
+(with-eval-after-load 'flycheck
+  (flycheck-define-generic-checker 'ensime
+    "A Scala (Java) checker using ENSIME."
+    :start 'flycheck-ensime-start
+    :modes '(scala-mode java-mode)
+    :predicate 'ensime-connection-or-nil))
 
 ;;;###autoload
-(add-to-list 'flycheck-checkers 'ensime)
+(with-eval-after-load 'flycheck
+  (add-to-list 'flycheck-checkers 'ensime))
 
 (provide 'flycheck-ensime)
 
