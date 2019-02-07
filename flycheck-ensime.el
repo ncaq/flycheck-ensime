@@ -1,7 +1,7 @@
 ;;; flycheck-ensime.el --- ensime for flycheck -*- lexical-binding: t -*-
 
 ;; Author: ncaq <ncaq@ncaq.net>
-;; Version: 0.1.0
+;; Version: 0.1.1
 ;; Package-Requires: ((emacs "26")(ensime "2.0.0")(flycheck "31"))
 ;; URL: https://github.com/ncaq/flycheck-ensime
 
@@ -37,6 +37,7 @@
 (require 'flycheck)
 (require 'pcase)
 
+;;;###autoload
 (defun flycheck-ensime-start (checker cont)
   "This function mapping ensime to flycheck.
 Argument CHECKER syntax checker being started.
@@ -59,13 +60,14 @@ Argument CONT callback."
 
 ;;;###autoload
 (with-eval-after-load 'flycheck
-  (flycheck-define-generic-checker 'ensime
-    "A Scala (Java) checker using ENSIME."
-    :start 'flycheck-ensime-start
-    :modes '(scala-mode java-mode)
-    :predicate 'ensime-connection-or-nil)
-  (add-to-list 'flycheck-checkers 'ensime)
-  )
+  (with-eval-after-load 'ensime
+    (flycheck-define-generic-checker 'ensime
+      "A Scala (Java) checker using ENSIME."
+      :start 'flycheck-ensime-start
+      :modes '(scala-mode java-mode)
+      :predicate 'ensime-connection-or-nil)
+    (add-to-list 'flycheck-checkers 'ensime)
+    ))
 
 (provide 'flycheck-ensime)
 
